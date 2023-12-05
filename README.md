@@ -22,7 +22,7 @@ La idea de este proyecto es contar con un balanceador para diferentes proyectos 
 
 ![application load balancer](/alb.jpg)
 
-El codigo de la infra está en [`load_balancer_stack.py`](load_balancer/load_balancer_stack.py.py.py)
+El codigo de la infra está en [`load_balancer_stack.py`](load_balancer/load_balancer_stack.py)
 
 
 ## Instrucciones para despliegue
