@@ -1,0 +1,53 @@
+{
+  "ssm:account=111712977002:parameterName=/gen-ai-apps/vpc-id:region=us-east-1": "vpc-0948dc169fced1ac8",
+  "vpc-provider:account=111712977002:filter.vpc-id=vpc-0948dc169fced1ac8:region=us-east-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-0948dc169fced1ac8",
+    "vpcCidrBlock": "10.0.0.0/16",
+    "ownerAccountId": "111712977002",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Private",
+        "type": "Private",
+        "subnets": [
+          {
+            "subnetId": "subnet-010e61e70033f0500",
+            "cidr": "10.0.128.0/18",
+            "availabilityZone": "us-east-1a",
+            "routeTableId": "rtb-0413ad6edcf5dce89"
+          },
+          {
+            "subnetId": "subnet-03cc36bdc9fc20354",
+            "cidr": "10.0.192.0/18",
+            "availabilityZone": "us-east-1b",
+            "routeTableId": "rtb-0bf4aecefda05ba9f"
+          }
+        ]
+      },
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-0afacaee928cc39b0",
+            "cidr": "10.0.0.0/18",
+            "availabilityZone": "us-east-1a",
+            "routeTableId": "rtb-02ed4e2f2e17d5d59"
+          },
+          {
+            "subnetId": "subnet-05c85c5474fce0eae",
+            "cidr": "10.0.64.0/18",
+            "availabilityZone": "us-east-1b",
+            "routeTableId": "rtb-0382b73e3e375ce8a"
+          }
+        ]
+      }
+    ]
+  },
+  "ssm:account=111712977002:parameterName=/gen-ai-apps/certificate-arn:region=us-east-1": "arn:aws:acm:us-east-1:111712977002:certificate/c403abcd-0c2b-4686-a2e9-6de724b45d26",
+  "ssm:account=111712977002:parameterName=/gen-ai-apps/hosted-zone-domain-name:region=us-east-1": "proyecto.chat",
+  "hosted-zone:account=111712977002:domainName=proyecto.chat:region=us-east-1": {
+    "Id": "/hostedzone/Z0732268219DKW2NDKDBM",
+    "Name": "proyecto.chat."
+  }
+}

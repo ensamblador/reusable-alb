@@ -1,58 +1,74 @@
 
-# Welcome to your CDK Python project!
+# ALB Reutilizable
 
-This is a blank project for CDK development with Python.
+Este proyecto crea los siguientes recursos dentro de una región de AWS:
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+* 1 Application Load Balancer
+* Https listener
+* Http listener usando certificado ACM existente, redireccionado a https
+* 2 security groups (alb y target groups)
+* Funcion AWS Lambda para realizar logout cuand la ruta es /logout (cuando se usa autenticación)
+* 1 registro alias para el alb dns en la zona hosteada existente
+* 1 regla de respuesta fija "Hello World" cuando se navega al home del balanceador
+* Parametros en parameter store:
+    * security group id para usar en target groups
+    * security group id del balanceador
+    * arn del balanceador
+    * arn del listener https
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+La idea de este proyecto es contar con un balanceador para diferentes proyectos futuros. Solo agregndo nuevos target groups y las reglas de balanceo.
 
-To manually create a virtualenv on MacOS and Linux:
 
+
+![application load balancer](/alb.jpg)
+
+El codigo de la infra está en [`load_balancer_stack.py`](load_balancer/load_balancer_stack.py.py.py)
+
+
+## Instrucciones para despliegue
+
+
+Clonar y crear un ambiente virtual python para el proyecto
+
+```zsh
+git clone https://github.com/ensamblador/reusable-alb.git
+cd reusable-alb
+python3 -m venv .venv
 ```
-$ python3 -m venv .venv
+
+En linux o macos el ambiente se activa así:
+
+```zsh
+source .venv/bin/activate
 ```
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
+en windows
 
-```
-$ source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
+```cmd
 % .venv\Scripts\activate.bat
 ```
 
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
+Una vez activado instalamos las dependencias
+```zsh
+pip install -r requirements.txt
 ```
 
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
+en este punto ya se puede desplegar:
 
-## Useful commands
+```zsh
+cdk deploy
+```
 
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+y para eliminar:
+
+```zsh
+cdk destroy
+```
+
+
+## Otros comandos útiles
+
+ * `cdk synth`       crea un template de cloudformation con los recursos de este proyecto
+ * `cdk diff`        compara el stack desplegado con el nuevo estado local
 
 Enjoy!
